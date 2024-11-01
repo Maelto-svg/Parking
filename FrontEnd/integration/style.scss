@@ -1,0 +1,210 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #ebebeb;
+
+    .wrapper {
+        width: 100%;
+        background-color: white;
+    }
+}
+
+a {
+    /*
+        Getting rid of default formatting for <a> elements. `inherits` tells that
+        `a` elements should use the value set on its parent for these properties.
+    */
+    text-decoration: inherit;
+    color: #1b1b1b;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    width: 1070px;
+    margin: 0 auto; // Centers the container
+    height: 75px; // Match the logo's height
+    padding: 0 10px;
+    background-color: #ffffff;
+
+
+    .logo {
+        width: 180px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 10px; // Adjust gap between links as needed
+        margin-left: 20px; // Space between logo and links
+
+        a {
+            border: none; // Remove default border
+            border-radius: 25px; // Adjust to create rounded edges
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        a:hover {
+            background-color: #eee;
+        }
+    }
+
+
+
+    .buttons {
+        margin-left: auto; // Push the buttons to the far right
+        display: flex;
+        gap: 10px; // Adjust space between buttons
+
+        a {
+            padding: 10px 20px; // Add padding for size
+            border: none; // Remove default border
+            border-radius: 25px; // Adjust to create rounded edges
+            background-color: #72ac51; // Example background color
+            color: white; // Text color
+            cursor: pointer; // Pointer cursor on hover
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background-color: #47752d; // Darker shade on hover
+            }
+        }
+    }
+}
+
+
+.page-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    /* Define two columns */
+    grid-template-rows: auto;
+    /* Define the row size */
+    gap: 0 20px;
+    align-items: center;
+    width: 1070px;
+    margin: 0 auto;
+    align-items: start;
+    padding-top: 20px;
+
+    .page-content-left {
+        display: flex;
+        flex-direction: column;
+        grid-row: 1;
+        /* Place in the first row */
+        grid-column: 1;
+        /* Place in the first column */
+        font-size: 18px;
+        background-color: #ffffff;
+
+        hr {
+            border: none;
+            border-top: 2px solid #ababab;
+            margin: 0;
+        }
+
+        .menu-item {
+            padding: 20px;
+        }
+
+        .menu-item:hover {
+            background-color: #72ac51;
+
+            a {
+                color: #ffffff;
+            }
+        }
+    }
+
+    .center {
+        grid-row: 1;
+        /* Place in the first row */
+        grid-column: 2;
+        /* Place in the second column */
+
+
+        h1 {
+            font-size: 36px;
+            font-weight: 400;
+            padding: 20px;
+            padding-bottom: 10px;
+            color: #565656;
+        }
+
+        .about {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            .article {
+                background-color: #ffffff;
+                display: flex;
+                flex-direction: column;
+
+
+                h2 {
+                    font-size: 20px;
+                    font-weight: 600;
+                    padding-top: 30px;
+                    padding-left: 30px;
+                    color: #1b1b1b;
+                }
+
+                p {
+                    font-size: 15px;
+                    font-weight: 400;
+                    padding-left: 30px;
+                    color: #1b1b1b;
+                }
+            }
+        }
+    }    
+}
+
+.login-content{
+    display: flex;
+    margin: 0 auto;
+    padding-top: 20px;
+    justify-content: center;
+    width: 570px;
+
+
+    .log{
+        background-color: #ffffff;
+        padding-top: 67px;
+        padding-left: 60px;
+        padding-bottom: 60px;
+
+        h1{
+            font-size: 32px;
+            font-weight: 400;
+        }
+
+        form{
+            input{
+            width: 450px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            }
+            [type="email"],[type="password"]{
+                font-size: 16px;
+                height: 45px;
+                outline-color: #47752d;
+
+                &:invalid{
+                    outline-color: #ff0000;
+                }
+
+            }
+            [type="submit"] {
+                font-size: 14px;
+                height: 42px;
+                border: none;
+                border-radius: 25px;
+                background-color: #72ac51;
+                color: #ffffff;
+            }
+        }
+    }
+}
