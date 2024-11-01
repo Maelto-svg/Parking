@@ -3,6 +3,7 @@ package com.project.parking.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "SP_VEHICLE")
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +15,6 @@ public class Vehicle {
     private VehicleType vehicleType; // Enum pour différencier les types de véhicules (voiture, moto, etc.)
 
     @OneToOne
-    @JoinColumn(name = "parking_spot_id")
     private ParkingSpot parkingSpot; // Association avec la place de parking occupée
 
     // Constructeurs

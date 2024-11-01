@@ -3,6 +3,7 @@ package com.project.parking.service;
 import com.project.parking.entity.User;
 import com.project.parking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
+    @Autowired(required=true)
     private PasswordEncoder passwordEncoder; // Si on utilise Spring Security
 
     // Inscrire un nouvel utilisateur

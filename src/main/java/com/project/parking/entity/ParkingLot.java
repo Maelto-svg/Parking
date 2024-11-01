@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "SP_PARKINGSLOT")
 public class ParkingLot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,8 +15,10 @@ public class ParkingLot {
     private String location;
     private Integer capacity;
 
-    @OneToMany(mappedBy = "parkingLot", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parkingLot")
     private List<ParkingSpot> parkingSpots;
+
+
 
     public List<ParkingSpot> getParkingSpots() {
         return parkingSpots;

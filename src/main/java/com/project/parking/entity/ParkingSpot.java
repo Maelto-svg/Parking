@@ -3,6 +3,7 @@ package com.project.parking.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name ="SP_PARKINGSPOT")
 public class ParkingSpot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,8 +13,10 @@ public class ParkingSpot {
     private Boolean isOccupied;
 
     @OneToOne
-    @JoinColumn(name = "vehicle_id") // colonne dans ParkingSpot qui pointe vers Vehicle
     private Vehicle vehicle;
+
+    @ManyToOne
+    private ParkingLot parkingLot;
 
     // Getters et setters
     public Long getId() {
