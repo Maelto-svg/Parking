@@ -46,15 +46,11 @@ public class SpringSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers("/login", "/css/**", "/js/**").permitAll()
+                        .requestMatchers("/login", "/html/**", "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .successHandler((request, response, authentication) -> {
-                            response.getWriter().write("Connexion réussie !");
-                            response.getWriter().flush();
-                        })
+                        .defaultSuccessUrl("/html/parking.html", true)
                         .permitAll()
                 )
                 .logout(logout -> logout.permitAll());
