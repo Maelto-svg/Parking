@@ -45,19 +45,19 @@ public class SpringSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/user/**").hasRole("USER")
-                        .requestMatchers("/api/public/**").permitAll()
+                .authorizeRequests(authorize -> authorize
+                        .requestMatchers("/login", "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .defaultSuccessUrl("/home", true) // Exemple de redirection post-login
+                        .loginPage("/login")
+                        .successHandler((request, response, authentication) -> {
+                            response.getWriter().write("Connexion réussie !");
+                            response.getWriter().flush();
+                        })
                         .permitAll()
                 )
-                .httpBasic(httpBasic -> httpBasic
-                        .realmName("Your Realm") // Optionnel, pour définir le nom du domaine d'authentification
-                );
+                .logout(logout -> logout.permitAll());
 
         return http.build();
     }

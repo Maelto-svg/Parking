@@ -2,6 +2,7 @@ package com.project.parking.controller;
 
 import com.project.parking.entity.ParkingLot;
 import com.project.parking.entity.ParkingSpot;
+import com.project.parking.repository.ParkingSpotRepository;
 import com.project.parking.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,14 @@ public class ParkingController {
     @GetMapping("/{parkingLotId}/available-spots")
     public List<ParkingSpot> getAvailableSpots(@PathVariable Long parkingLotId) {
         return parkingService.getAvailableSpots(parkingLotId);
+    }
+
+    @Autowired
+    private ParkingSpotRepository parkingSpotRepository;
+
+    @GetMapping("/spots")
+    public List<ParkingSpot> getAllParkingSpots() {
+        return parkingSpotRepository.findAll();
     }
 }
 
