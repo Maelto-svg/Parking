@@ -147,3 +147,48 @@ nav ul li a {
 .btn-submit:hover {
   background: #e68a00;
 }
+
+/* Parking Layout Section */
+.parking-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.parking-row {
+  display: flex;
+  gap: 10px;
+}
+
+.parking-slot {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.parking-slot:hover {
+  transform: scale(1.1);
+}
+
+/* Status Colors */
+.parking-slot.available {
+  background-color: #4CAF50; /* Green for available */
+}
+
+.parking-slot.occupied {
+  background-color: #F44336; /* Red for occupied */
+}
+
+.parking-slot.reserved {
+  background-color: #FFC107; /* Yellow for reserved */
+}
