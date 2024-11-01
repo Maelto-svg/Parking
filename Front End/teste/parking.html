@@ -19,56 +19,40 @@
       <h2>Parking Management Dashboard</h2>
       <p>Welcome to the parking management system.</p>
       
+      <!-- Parking Layout with 3 Columns of 2x6 Grids -->
       <div class="parking-layout">
-        <div class="parking-row">
-          <div class="parking-slot available">A1</div>
-          <div class="parking-slot available">A2</div>
-          <div class="parking-slot occupied">A3</div>
-          <div class="parking-slot reserved">A4</div>
+        <!-- Column 1 -->
+        <div class="parking-column">
+          <div class="parking-slot available">A1 <span>Available</span></div>
+          <div class="parking-slot available">A2 <span>Available</span></div>
+          <div class="parking-slot available">A3 <span>Available</span></div>
+          <div class="parking-slot available">A4 <span>Available</span></div>
+          <div class="parking-slot available">A5 <span>Available</span></div>
+          <div class="parking-slot available">A6 <span>Available</span></div>
         </div>
-        <div class="parking-row">
-          <div class="parking-slot available">B1</div>
-          <div class="parking-slot available">B2</div>
-          <div class="parking-slot occupied">B3</div>
-          <div class="parking-slot reserved">B4</div>
+        
+        <!-- Column 2 -->
+        <div class="parking-column">
+          <div class="parking-slot available">B1 <span>Available</span></div>
+          <div class="parking-slot available">B2 <span>Available</span></div>
+          <div class="parking-slot available">B3 <span>Available</span></div>
+          <div class="parking-slot available">B4 <span>Available</span></div>
+          <div class="parking-slot available">B5 <span>Available</span></div>
+          <div class="parking-slot available">B6 <span>Available</span></div>
         </div>
-        <div class="parking-row">
-          <div class="parking-slot available">C1</div>
-          <div class="parking-slot occupied">C2</div>
-          <div class="parking-slot available">C3</div>
-          <div class="parking-slot reserved">C4</div>
-        </div>
-        <div class="parking-row">
-          <div class="parking-slot available">D1</div>
-          <div class="parking-slot reserved">D2</div>
-          <div class="parking-slot available">D3</div>
-          <div class="parking-slot occupied">D4</div>
+        
+        <!-- Column 3 -->
+        <div class="parking-column">
+          <div class="parking-slot available">C1 <span>Available</span></div>
+          <div class="parking-slot available">C2 <span>Available</span></div>
+          <div class="parking-slot available">C3 <span>Available</span></div>
+          <div class="parking-slot available">C4 <span>Available</span></div>
+          <div class="parking-slot available">C5 <span>Available</span></div>
+          <div class="parking-slot available">C6 <span>Available</span></div>
         </div>
       </div>
     </div>
   </section>
-
-  <script>
-    const parkingSpots = document.querySelectorAll(".parking-slot");
-  
-    parkingSpots.forEach(spot => {
-      spot.addEventListener("click", () => {
-        if (spot.classList.contains("available")) {
-          spot.classList.remove("available");
-          spot.classList.add("reserved");
-          spot.textContent = "Reserved";
-        } else if (spot.classList.contains("reserved")) {
-          spot.classList.remove("reserved");
-          spot.classList.add("occupied");
-          spot.textContent = "Occupied";
-        } else if (spot.classList.contains("occupied")) {
-          spot.classList.remove("occupied");
-          spot.classList.add("available");
-          spot.textContent = "Available";
-        }
-      });
-    });
-  </script>
 
   <script src="script.js"></script>
 

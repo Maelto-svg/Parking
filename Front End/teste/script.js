@@ -1,55 +1,61 @@
-// Get modal elements
+// Modal functionality
 const modal = document.getElementById("modal");
 const reserveBtn = document.getElementById("reserveBtn");
 const closeBtn = document.getElementById("closeBtn");
 
-// Show modal when "Reserve a Spot" is clicked
+// Show the modal when "Reserve a Spot" is clicked
 reserveBtn.addEventListener("click", function(event) {
-  event.preventDefault(); // Prevents the default link behavior
-  modal.style.display = "flex"; // Show the modal with flex display
+  event.preventDefault();
+  modal.style.display = "flex";
 });
 
-// Hide modal when close button is clicked
+// Close the modal when "X" is clicked
 closeBtn.addEventListener("click", function() {
   modal.style.display = "none";
 });
 
-// Hide modal when clicking outside of modal content
+// Close the modal when clicking outside the modal content
 window.addEventListener("click", function(event) {
   if (event.target === modal) {
     modal.style.display = "none";
   }
 });
 
-// Select all parking spots
-const parkingSpots = document.querySelectorAll(".parking-slot");
+// Login validation
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
-// Check if parking spots were selected
-if (parkingSpots.length > 0) {
-  console.log("Parking spots found:", parkingSpots.length);
+  // Validate credentials
+  if (username === "admin" && password === "admin") {
+    // Redirect to parking interface on successful login
+    window.location.href = "parking.html";
+  } else {
+    alert("Invalid credentials. Please try again.");
+  }
+});
 
-  // Loop through each parking spot and add a click event listener
+document.addEventListener("DOMContentLoaded", () => {
+  const parkingSpots = document.querySelectorAll(".parking-slot");
+
   parkingSpots.forEach(spot => {
     spot.addEventListener("click", () => {
-      // Check the current status and toggle to the next status
+      const statusText = spot.querySelector("span");
+
       if (spot.classList.contains("available")) {
         spot.classList.remove("available");
         spot.classList.add("reserved");
-        spot.textContent = "Reserved";
+        statusText.textContent = "Reserved";
       } else if (spot.classList.contains("reserved")) {
         spot.classList.remove("reserved");
         spot.classList.add("occupied");
-        spot.textContent = "Occupied";
+        statusText.textContent = "Occupied";
       } else if (spot.classList.contains("occupied")) {
         spot.classList.remove("occupied");
         spot.classList.add("available");
-        spot.textContent = "Available";
+        statusText.textContent = "Available";
       }
-      
-      // Log the current status to the console for debugging
-      console.log(`Spot ${spot.textContent} status changed`);
     });
   });
-} else {
-  console.log("No parking spots found. Check your HTML structure and class names.");
-}
+});
