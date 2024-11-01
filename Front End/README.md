@@ -1,1 +1,4 @@
-http://localhost:8000/teste/parking.html?email=a&password=a#
+http://localhost:8000/teste/parking.html
+
+username: admin
+passowrd: admin
