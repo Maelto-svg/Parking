@@ -30,7 +30,7 @@ public class ParkingService {
 
     // Récupérer toutes les places libres dans un parking
     public List<spot> getAvailableSpots(Long parkingLotId) {
-        List<ParkingSpot> sp = parkingSpotRepository.findAll();
+        List<ParkingSpot> sp = parkingSpotRepository.findByIsOccupied(false);
         return sp.stream().map(spotMapper::of).toList();
     }
 
