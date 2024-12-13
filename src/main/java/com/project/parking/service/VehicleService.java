@@ -24,7 +24,7 @@ public class VehicleService {
         if (!spot.getOccupied()) {
             spot.setOccupied(true);
             spot.setVehicle(vehicle); // Liaison bidirectionnelle si nécessaire
-            vehicle.setParkingSpot(spot);
+            vehicle.setSpot(spot);
             vehicleRepository.save(vehicle);
             parkingSpotRepository.save(spot);
         } else {
@@ -35,11 +35,11 @@ public class VehicleService {
     // Retirer un véhicule d'une place
     public void removeVehicleFromSpot(String licensePlate) {
         Vehicle vehicle = vehicleRepository.findByLicensePlate(licensePlate);
-        if (vehicle != null && vehicle.getParkingSpot() != null) {
-            ParkingSpot spot = vehicle.getParkingSpot();
+        if (vehicle != null && vehicle.getSpot() != null) {
+            ParkingSpot spot = vehicle.getSpot();
             spot.setOccupied(false);
             spot.setVehicle(null);
-            vehicle.setParkingSpot(null);
+            vehicle.setSpot(null);
             parkingSpotRepository.save(spot);
             vehicleRepository.delete(vehicle);
         } else {

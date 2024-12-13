@@ -9,20 +9,21 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "plate")
     private String licensePlate;
 
     @Enumerated(EnumType.STRING)
-    private VehicleType vehicleType; // Enum pour différencier les types de véhicules (voiture, moto, etc.)
+    private VehicleType type; // Enum pour différencier les types de véhicules (voiture, moto, etc.)
 
     @OneToOne
-    private ParkingSpot parkingSpot; // Association avec la place de parking occupée
+    private ParkingSpot spot; // Association avec la place de parking occupée
 
     // Constructeurs
     public Vehicle() {}
 
     public Vehicle(String licensePlate, VehicleType vehicleType) {
         this.licensePlate = licensePlate;
-        this.vehicleType = vehicleType;
+        this.type = vehicleType;
     }
 
     // Getters et setters
@@ -42,20 +43,20 @@ public class Vehicle {
         this.licensePlate = licensePlate;
     }
 
-    public VehicleType getVehicleType() {
-        return vehicleType;
+    public VehicleType getType() {
+        return type;
     }
 
-    public void setVehicleType(VehicleType vehicleType) {
-        this.vehicleType = vehicleType;
+    public void setType(VehicleType type) {
+        this.type = type;
     }
 
-    public ParkingSpot getParkingSpot() {
-        return parkingSpot;
+    public ParkingSpot getSpot() {
+        return spot;
     }
 
-    public void setParkingSpot(ParkingSpot parkingSpot) {
-        this.parkingSpot = parkingSpot;
+    public void setSpot(ParkingSpot spot) {
+        this.spot = spot;
     }
 }
 

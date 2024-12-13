@@ -1,17 +1,60 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plan des Places de Parking</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Parking Interface</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-<h1>Plan des Places de Parking</h1>
-<div class="parking-grid">
-  <!-- On utilisera JavaScript pour générer les places de manière dynamique -->
-</div>
+
+<header class="header">
+  <div class="container">
+    <h1 class="logo">ParkEasy - Parking Interface</h1>
+  </div>
+</header>
+
+<section class="parking-interface">
+  <div class="container">
+    <h2>Parking Management Dashboard</h2>
+    <p>Welcome to the parking management system.</p>
+
+    <!-- Parking Layout with 3 Columns of 2x6 Grids -->
+    <div class="parking-layout">
+      <!-- Column 1 -->
+      <div class="parking-column">
+        <div class="parking-slot available">A1 <span>Available</span></div>
+        <div class="parking-slot available">A2 <span>Available</span></div>
+        <div class="parking-slot available">A3 <span>Available</span></div>
+        <div class="parking-slot available">A4 <span>Available</span></div>
+        <div class="parking-slot available">A5 <span>Available</span></div>
+        <div class="parking-slot available">A6 <span>Available</span></div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="parking-column">
+        <div class="parking-slot available">B1 <span>Available</span></div>
+        <div class="parking-slot available">B2 <span>Available</span></div>
+        <div class="parking-slot available">B3 <span>Available</span></div>
+        <div class="parking-slot available">B4 <span>Available</span></div>
+        <div class="parking-slot available">B5 <span>Available</span></div>
+        <div class="parking-slot available">B6 <span>Available</span></div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="parking-column">
+        <div class="parking-slot available">C1 <span>Available</span></div>
+        <div class="parking-slot available">C2 <span>Available</span></div>
+        <div class="parking-slot available">C3 <span>Available</span></div>
+        <div class="parking-slot available">C4 <span>Available</span></div>
+        <div class="parking-slot available">C5 <span>Available</span></div>
+        <div class="parking-slot available">C6 <span>Available</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script src="script.js"></script>
+
 </body>
 </html>

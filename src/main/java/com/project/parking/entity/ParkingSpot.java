@@ -9,14 +9,20 @@ public class ParkingSpot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "spotnumber")
     private String spotNumber;
+
+    @Column(name = "isoccupied")
     private Boolean isOccupied;
 
-    @OneToOne
+    @OneToOne(mappedBy = "spot")
     private Vehicle vehicle;
 
     @ManyToOne
-    private ParkingLot parkingLot;
+    private ParkingLot lot;
+
+    public ParkingSpot() {
+    }
 
     // Getters et setters
     public Long getId() {
@@ -49,6 +55,14 @@ public class ParkingSpot {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
+    }
+
+    public ParkingLot getLot() {
+        return lot;
+    }
+
+    public void setLot(ParkingLot lot) {
+        this.lot = lot;
     }
 }
 

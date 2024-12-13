@@ -11,21 +11,34 @@ public class ParkingLot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String name;
+
+    @Column
     private String location;
+
+    @Column
     private Integer capacity;
 
-    @OneToMany(mappedBy = "parkingLot")
-    private List<ParkingSpot> parkingSpots;
+    @OneToMany(mappedBy = "lot")
+    private List<ParkingSpot> spots;
 
-
-
-    public List<ParkingSpot> getParkingSpots() {
-        return parkingSpots;
+    public ParkingLot() {
     }
 
-    public void setParkingSpots(List<ParkingSpot> parkingSpots) {
-        this.parkingSpots = parkingSpots;
+    public ParkingLot(String name, Long id, String location, Integer capacity) {
+        this.name = name;
+        this.id = id;
+        this.location = location;
+        this.capacity = capacity;
+    }
+
+    public List<ParkingSpot> getSpots() {
+        return spots;
+    }
+
+    public void setSpots(List<ParkingSpot> spots) {
+        this.spots = spots;
     }
 
     public Integer getCapacity() {

@@ -1,47 +1,182 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  line-height: 1.6;
 }
 
-.parking-grid {
-    display: grid;
-    grid-template-columns: repeat(14, 50px);
-    grid-template-rows: repeat(17, 50px);
-    gap: 2px;
-    margin-top: 20px;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.parking-spot {
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #333;
+/* Header Styling */
+.header {
+  background: #003366;
+  color: #fff;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.available {
-    background-color: lightgreen;
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+/* Welcome/Intro Section (for pages with a welcome message) */
+.welcome-section {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.occupied {
-    background-color: tomato;
+.welcome-section h2 {
+  font-size: 36px;
+  color: #003366;
+  margin-bottom: 20px;
 }
 
-.entry-arrow {
-    grid-column: 7 / 9;
-    grid-row: 16 / 17;
-    text-align: center;
-    color: blue;
-    font-size: 2em;
+.welcome-section p {
+  font-size: 18px;
+  margin: 20px 0;
 }
 
-.exit-arrow {
-    grid-column: 7 / 9;
-    grid-row: 14 / 15;
-    text-align: center;
-    color: blue;
-    font-size: 2em;
+.btn-reserve {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff9900;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.btn-reserve:hover {
+  background-color: #e68a00;
+}
+
+/* Parking Layout Section */
+.parking-interface {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.parking-layout {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.parking-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 spots per row */
+  gap: 10px;
+}
+
+/* Parking Spot Styling */
+.parking-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.parking-slot.available {
+  background-color: #4CAF50; /* Green for available */
+}
+
+.parking-slot.reserved {
+  background-color: #FFC107; /* Yellow for reserved */
+}
+
+.parking-slot.occupied {
+  background-color: #F44336; /* Red for occupied */
+}
+
+/* Modal Styling for Login (if used) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal h3 {
+  margin-bottom: 20px;
+  color: #003366;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal label {
+  font-weight: bold;
+}
+
+.modal input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-submit {
+  padding: 10px;
+  background: #ff9900;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: #e68a00;
 }

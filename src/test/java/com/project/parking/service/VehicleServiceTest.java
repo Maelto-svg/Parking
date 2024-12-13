@@ -15,9 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
-
-import java.util.Optional;
-
 @ExtendWith(MockitoExtension.class)
 public class VehicleServiceTest {
 
@@ -57,7 +54,7 @@ public class VehicleServiceTest {
         spot.setVehicle(vehicle);
         spot.setOccupied(true);
 
-        vehicle.setParkingSpot(spot);
+        vehicle.setSpot(spot);
 
         when(vehicleRepository.findByLicensePlate("ABC123")).thenReturn(vehicle);
 
