@@ -1,42 +1,56 @@
 // script.js
+document.addEventListener("DOMContentLoaded", function () {
+  const parkingGrid = document.getElementById('layout');
+  const spotsPerColumn = 6; // Number of spots per column
 
-document.addEventListener("DOMContentLoaded", function() {
-    const parkingGrid = document.querySelector(".parking-grid");
+  // Appeler l'API pour obtenir les places de parking
+  fetch("/api/parking/spots")
+      .then(response => response.json())
+      .then(data => {
+          let currentColumn;
 
-    // Appeler l'API pour obtenir les places de parking
-    fetch("/api/parking/spots") // Modifier avec l'URL correcte de ton endpoint
-        .then(response => response.json())
-        .then(data => {
-            // Générer les places de parking dans la grille
-            data.forEach(spot => {
-                const spotElement = document.createElement("div");
-                spotElement.classList.add("parking-spot");
+          // Générer les places de parking dans la grille
+          data.forEach((spot, index) => {
+              // Créer une nouvelle colonne si nécessaire
+              if (index % spotsPerColumn === 0) {
+                  currentColumn = document.createElement("div");
+                  currentColumn.classList.add("parking-column");
+                  parkingGrid.appendChild(currentColumn);
+              }
 
-                // Ajouter une classe en fonction de l'état
-                if (spot.isOccupied) {
-                    spotElement.classList.add("occupied");
-                } else {
-                    spotElement.classList.add("available");
-                }
+              // Créer un élément pour une place de parking
+              const spotElement = document.createElement("div");
+              const avElement = document.createElement("span");
 
-                // Ajouter le numéro de place
-                spotElement.textContent = spot.spotNumber;
+              spotElement.classList.add("parking-slot");
 
-                // Ajouter la place dans la grille
-                parkingGrid.appendChild(spotElement);
-            });
+              // Ajouter une classe en fonction de l'état
+              if (spot.isOccupied) {
+                  spotElement.classList.add("occupied");
+                  avElement.textContent = "Occupied";
+              } else {
+                  spotElement.classList.add("available");
+                  avElement.textContent = "Available";
+              }
 
-            // Ajouter des flèches d'entrée/sortie
-            const entryArrow = document.createElement("div");
-            entryArrow.classList.add("entry-arrow");
-            entryArrow.textContent = "↓";
-            parkingGrid.appendChild(entryArrow);
+              // Ajouter le numéro de place
+              spotElement.textContent = spot.spotNumber;
 
-            const exitArrow = document.createElement("div");
-            exitArrow.classList.add("exit-arrow");
-            exitArrow.textContent = "↑";
-            parkingGrid.appendChild(exitArrow);
-        })
+              // Ajouter les éléments à la colonne actuelle
+              currentColumn.appendChild(spotElement);
+              spotElement.appendChild(avElement);
+          });
+      })
+            // // Ajouter des flèches d'entrée/sortie
+            // const entryArrow = document.createElement("div");
+            // entryArrow.classList.add("entry-arrow");
+            // entryArrow.textContent = "↓";
+            // parkingGrid.appendChild(entryArrow);
+
+            // const exitArrow = document.createElement("div");
+            // exitArrow.classList.add("exit-arrow");
+            // exitArrow.textContent = "↑";
+            // parkingGrid.appendChild(exitArrow);
         .catch(error => console.error("Erreur lors du chargement des places de parking :", error));
 });
 
