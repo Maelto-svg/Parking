@@ -1,5 +1,7 @@
 package com.project.parking.service;
 
+import com.project.parking.dto.lot;
+import com.project.parking.dto.lotMapper;
 import com.project.parking.entity.ParkingSpot;
 import com.project.parking.entity.ParkingLot;
 import com.project.parking.repository.ParkingLotRepository;
@@ -19,8 +21,9 @@ public class ParkingService {
     private ParkingSpotRepository parkingSpotRepository;
 
     // Récupérer tous les parkings
-    public List<ParkingLot> getAllParkingLots() {
-        return parkingLotRepository.findAll();
+    public List<lot> getAllParkingLots() {
+        List<ParkingLot> pl = parkingLotRepository.findAll();
+        return pl.stream().map(lotMapper::of).toList();
     }
 
     // Récupérer toutes les places libres dans un parking

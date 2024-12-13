@@ -1,5 +1,6 @@
 package com.project.parking.controller;
 
+import com.project.parking.dto.lot;
 import com.project.parking.entity.ParkingLot;
 import com.project.parking.entity.ParkingSpot;
 import com.project.parking.repository.ParkingSpotRepository;
@@ -20,7 +21,7 @@ public class ParkingController {
 
     // Endpoint pour obtenir tous les parkings
     @GetMapping("/lots")
-    public List<ParkingLot> getAllParkingLots() {
+    public List<lot> getAllParkingLots() {
         return parkingService.getAllParkingLots();
     }
 
