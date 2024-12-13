@@ -2,6 +2,8 @@ package com.project.parking.service;
 
 import com.project.parking.dto.lot;
 import com.project.parking.dto.lotMapper;
+import com.project.parking.dto.spot;
+import com.project.parking.dto.spotMapper;
 import com.project.parking.entity.ParkingSpot;
 import com.project.parking.entity.ParkingLot;
 import com.project.parking.repository.ParkingLotRepository;
@@ -27,8 +29,9 @@ public class ParkingService {
     }
 
     // Récupérer toutes les places libres dans un parking
-    public List<ParkingSpot> getAvailableSpots(Long parkingLotId) {
-        return parkingSpotRepository.findByIsOccupied(false);
+    public List<spot> getAvailableSpots(Long parkingLotId) {
+        List<ParkingSpot> sp = parkingSpotRepository.findAll();
+        return sp.stream().map(spotMapper::of).toList();
     }
 
     // Réserver une place pour un véhicule
@@ -44,6 +47,11 @@ public class ParkingService {
         Optional<ParkingSpot> spot = parkingSpotRepository.findById(parkingSpotId);
         spot.ifPresent(s -> s.setOccupied(false));
         spot.ifPresent(parkingSpotRepository::save);
+    }
+
+    public List<spot> findAll() {
+        List<ParkingSpot> sp = parkingSpotRepository.findAll();
+        return sp.stream().map(spotMapper::of).toList();
     }
 }
 

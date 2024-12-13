@@ -1,6 +1,7 @@
 package com.project.parking.controller;
 
 import com.project.parking.dto.lot;
+import com.project.parking.dto.spot;
 import com.project.parking.entity.ParkingLot;
 import com.project.parking.entity.ParkingSpot;
 import com.project.parking.repository.ParkingSpotRepository;
@@ -27,7 +28,7 @@ public class ParkingController {
 
     // Endpoint pour obtenir les places disponibles d'un parking
     @GetMapping("/{parkingLotId}/available-spots")
-    public List<ParkingSpot> getAvailableSpots(@PathVariable Long parkingLotId) {
+    public List<spot> getAvailableSpots(@PathVariable Long parkingLotId) {
         return parkingService.getAvailableSpots(parkingLotId);
     }
 
@@ -35,8 +36,8 @@ public class ParkingController {
     private ParkingSpotRepository parkingSpotRepository;
 
     @GetMapping("/spots")
-    public List<ParkingSpot> getAllParkingSpots() {
-        return parkingSpotRepository.findAll();
+    public List<spot> getAllParkingSpots() {
+        return parkingService.findAll();
     }
 }
 

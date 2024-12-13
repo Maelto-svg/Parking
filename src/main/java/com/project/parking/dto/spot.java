@@ -1,4 +1,7 @@
 package com.project.parking.dto;
 
-public record spot() {
+import com.project.parking.entity.ParkingLot;
+import com.project.parking.entity.Vehicle;
+
+public record spot(Long id, String spotNumber, Boolean isOccupied, String vehicle, String lot) {
 }
