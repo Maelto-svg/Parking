@@ -11,6 +11,7 @@ import com.project.parking.repository.ParkingSpotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -30,7 +31,7 @@ public class ParkingService {
 
     // Récupérer toutes les places libres dans un parking
     public List<spot> getAvailableSpots(Long parkingLotId) {
-        List<ParkingSpot> sp = parkingSpotRepository.findByIsOccupied(false);
+        List<ParkingSpot> sp = parkingSpotRepository.findByIsOccupied(false).stream().filter(s -> Objects.equals(s.getLot().getId(), parkingLotId)).toList();
         return sp.stream().map(spotMapper::of).toList();
     }
 
