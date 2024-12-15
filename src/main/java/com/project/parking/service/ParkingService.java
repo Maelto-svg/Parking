@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Service
 public class ParkingService {
@@ -27,6 +28,11 @@ public class ParkingService {
     public List<lot> getAllParkingLots() {
         List<ParkingLot> pl = parkingLotRepository.findAll();
         return pl.stream().map(lotMapper::of).toList();
+    }
+
+    public List<spot> getParkingSpotsFromLot(Long parkingLotId) {
+        Stream<ParkingSpot> sp = parkingSpotRepository.findAll().stream().filter(s -> s.getLot().getId().equals(parkingLotId));
+        return sp.map(spotMapper::of).toList();
     }
 
     // Récupérer toutes les places libres dans un parking
