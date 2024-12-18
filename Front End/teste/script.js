@@ -1,61 +1,46 @@
-// Modal functionality
-const modal = document.getElementById("modal");
-const reserveBtn = document.getElementById("reserveBtn");
-const closeBtn = document.getElementById("closeBtn");
+// Modal Elements
+const registerIcon = document.getElementById("register-icon");
+const modal = document.getElementById("auth-modal");
+const closeModal = document.getElementById("close-modal");
+const loginBtn = document.getElementById("login-btn");
+const createAccountBtn = document.getElementById("create-account-btn");
+const loginForm = document.getElementById("login-form");
+const createAccountForm = document.getElementById("create-account-form");
 
-// Show the modal when "Reserve a Spot" is clicked
-reserveBtn.addEventListener("click", function(event) {
-  event.preventDefault();
+// Open Modal
+registerIcon.addEventListener("click", (e) => {
+  e.preventDefault();
   modal.style.display = "flex";
 });
 
-// Close the modal when "X" is clicked
-closeBtn.addEventListener("click", function() {
+// Close Modal
+closeModal.addEventListener("click", () => {
   modal.style.display = "none";
+  resetForms();
 });
 
-// Close the modal when clicking outside the modal content
-window.addEventListener("click", function(event) {
-  if (event.target === modal) {
+// Close Modal when clicking outside
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
     modal.style.display = "none";
+    resetForms();
   }
 });
 
-// Login validation
-document.getElementById("loginForm").addEventListener("submit", function(event) {
-  event.preventDefault();
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  // Validate credentials
-  if (username === "admin" && password === "admin") {
-    // Redirect to parking interface on successful login
-    window.location.href = "parking.html";
-  } else {
-    alert("Invalid credentials. Please try again.");
-  }
+// Show Login Form
+loginBtn.addEventListener("click", () => {
+  loginForm.style.display = "block";
+  createAccountForm.style.display = "none";
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const parkingSpots = document.querySelectorAll(".parking-slot");
-
-  parkingSpots.forEach(spot => {
-    spot.addEventListener("click", () => {
-      const statusText = spot.querySelector("span");
-
-      if (spot.classList.contains("available")) {
-        spot.classList.remove("available");
-        spot.classList.add("reserved");
-        statusText.textContent = "Reserved";
-      } else if (spot.classList.contains("reserved")) {
-        spot.classList.remove("reserved");
-        spot.classList.add("occupied");
-        statusText.textContent = "Occupied";
-      } else if (spot.classList.contains("occupied")) {
-        spot.classList.remove("occupied");
-        spot.classList.add("available");
-        statusText.textContent = "Available";
-      }
-    });
-  });
+// Show Create Account Form
+createAccountBtn.addEventListener("click", () => {
+  createAccountForm.style.display = "block";
+  loginForm.style.display = "none";
 });
+
+// Reset Forms
+function resetForms() {
+  loginForm.style.display = "none";
+  createAccountForm.style.display = "none";
+}
