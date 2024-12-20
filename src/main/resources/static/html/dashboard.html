@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<!-- Header Section -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <h1 class="logo">Parking Dashboard</h1>
+            <a href="index.html" class="btn">Back to Home</a>
+        </div>
+    </div>
+</header>
+
+<!-- Dashboard Section -->
+<section class="dashboard-section">
+    <div class="container">
+        <h2>Parking Spots Overview</h2>
+
+        <!-- Floor Selector Buttons -->
+        <div class="floor-buttons">
+            <button class="floor-btn" data-floor="floor-1">Floor 1</button>
+            <button class="floor-btn" data-floor="floor-2">Floor 2</button>
+            <button class="floor-btn" data-floor="floor-3">Floor 3</button>
+            <button class="floor-btn" data-floor="floor-4">Floor 4</button>
+        </div>
+
+        <!-- Floors -->
+        <div id="floor-1" class="floor active">
+            <h3>Floor 1</h3>
+            <div class="parking-grid"></div>
+        </div>
+
+        <div id="floor-2" class="floor">
+            <h3>Floor 2</h3>
+            <div class="parking-grid"></div>
+        </div>
+
+        <div id="floor-3" class="floor">
+            <h3>Floor 3</h3>
+            <div class="parking-grid"></div>
+        </div>
+
+        <div id="floor-4" class="floor">
+            <h3>Floor 4</h3>
+            <div class="parking-grid"></div>
+        </div>
+    </div>
+</section>
+
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

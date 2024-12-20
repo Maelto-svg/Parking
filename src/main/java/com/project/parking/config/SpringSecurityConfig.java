@@ -12,6 +12,8 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
@@ -52,14 +54,26 @@ public class SpringSecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .defaultSuccessUrl("/html/parking.html", true)
+                        .defaultSuccessUrl("/html/index.html", true)
                         .permitAll()
                 )
                 .logout(logout -> logout.permitAll()).csrf(AbstractHttpConfigurer::disable)
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable));
-        ;
 
         return http.build();
     }
-}
 
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**") // Permite todas as rotas
+                        .allowedOrigins("http://localhost:3000") // Domínio do frontend
+                        .allowedMethods("GET", "POST", "PUT", "DELETE") // Métodos HTTP permitidos
+                        .allowedHeaders("*") // Permite todos os cabeçalhos
+                        .allowCredentials(true); // Permite envio de cookies/autenticação
+            }
+        };
+    }
+}

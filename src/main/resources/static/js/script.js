@@ -9,40 +9,40 @@ const createAccountForm = document.getElementById("create-account-form");
 
 // Open Modal
 registerIcon.addEventListener("click", (e) => {
-  e.preventDefault();
-  modal.style.display = "flex";
+    e.preventDefault();
+    modal.style.display = "flex";
 });
 
 // Close Modal
 closeModal.addEventListener("click", () => {
-  modal.style.display = "none";
-  resetForms();
+    modal.style.display = "none";
+    resetForms();
 });
 
 // Close Modal when clicking outside
 window.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-    resetForms();
-  }
+    if (e.target === modal) {
+        modal.style.display = "none";
+        resetForms();
+    }
 });
 
 // Show Login Form
 loginBtn.addEventListener("click", () => {
-  loginForm.style.display = "block";
-  createAccountForm.style.display = "none";
+    loginForm.style.display = "block";
+    createAccountForm.style.display = "none";
 });
 
 // Show Create Account Form
 createAccountBtn.addEventListener("click", () => {
-  createAccountForm.style.display = "block";
-  loginForm.style.display = "none";
+    createAccountForm.style.display = "block";
+    loginForm.style.display = "none";
 });
 
 // Reset Forms
 function resetForms() {
-  loginForm.style.display = "none";
-  createAccountForm.style.display = "none";
+    loginForm.style.display = "none";
+    createAccountForm.style.display = "none";
 }
 
 // Select all spots
@@ -50,24 +50,49 @@ const parkingSlots = document.querySelectorAll(".parking-slot");
 
 // Click event for each spot
 parkingSlots.forEach((slot) => {
-  slot.addEventListener("click", () => {
-    const status = slot.getAttribute("data-status");
+    slot.addEventListener("click", () => {
+        const status = slot.getAttribute("data-status");
 
-    if (status === "available") {
-      slot.setAttribute("data-status", "reserved");
-      slot.classList.remove("available");
-      slot.classList.add("reserved");
-      slot.textContent = "Reserved";
-    } else if (status === "reserved") {
-      slot.setAttribute("data-status", "occupied");
-      slot.classList.remove("reserved");
-      slot.classList.add("occupied");
-      slot.textContent = "Occupied";
-    } else if (status === "occupied") {
-      slot.setAttribute("data-status", "available");
-      slot.classList.remove("occupied");
-      slot.classList.add("available");
-      slot.textContent = slot.textContent.slice(0, 2);
-    }
-  });
-});
+        if (status === "available") {
+            slot.setAttribute("data-status", "reserved");
+            slot.classList.remove("available");
+            slot.classList.add("reserved");
+            slot.textContent = "Reserved";
+        } else if (status === "reserved") {
+            slot.setAttribute("data-status", "occupied");
+            slot.classList.remove("reserved");
+            slot.classList.add("occupied");
+            slot.textContent = "Occupied";
+        } else if (status === "occupied") {
+            slot.setAttribute("data-status", "available");
+            slot.classList.remove("occupied");
+            slot.classList.add("available");
+            slot.textContent = slot.textContent.slice(0, 2);
+        }
+    })
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const response = await fetch("http://localhost:8080/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+                body: new URLSearchParams({ username, password }),
+            });
+
+            if (response.ok) {
+                alert("Login successful!");
+                window.location.href = "/html/index.html";
+            } else {
+                alert("Invalid credentials!");
+            }
+        } catch (error) {
+            console.error("Error during login:", error);
+        }
+    });
+}

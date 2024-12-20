@@ -1,0 +1,333 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    background-color: #500066;
+    color: #fff;
+    padding: 0px 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.header-icons {
+    display: flex;
+    gap: 25px;
+}
+
+.icon-link {
+    display: flex;
+    align-items: center;
+}
+
+.github-icon {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+    transition: transform 0.3s ease;
+}
+
+.github-icon:hover {
+    transform: scale(1.2);
+}
+
+.register-icon {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+    transition:  0.3s ease;
+}
+
+.register-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Information Section */
+.info-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.info-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.stat {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+}
+
+.stat h3 {
+    font-size: 32px;
+    color: #003366;
+    margin-bottom: 10px;
+}
+
+/* Navigation Section */
+.navigation-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #500066;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #7d00a0;
+}
+
+/* Footer */
+.footer {
+    background-color: #500066;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+    position: absolute;
+    color: #500066;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.auth-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #500066;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-btn:hover {
+    background-color: #7d00a0;
+}
+
+/* Auth Forms */
+.auth-form {
+    margin-top: 20px;
+    display: none; /* Oculto até ser ativado */
+    flex-direction: column;
+    gap: 15px;
+    text-align: left; /* Alinha labels à esquerda */
+}
+
+.auth-form h3 {
+    text-align: center; /* Centraliza o título */
+    font-size: 20px;
+    color: #500066;
+    margin-bottom: 10px;
+}
+
+.auth-form label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333; /* Garante contraste */
+}
+
+.auth-form input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* Ocupa toda a largura */
+}
+
+.auth-form .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #500066;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.auth-form .btn:hover {
+    background-color: #7d00a0;
+}
+
+/* Dashboard Section */
+.dashboard-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.dashboard-section h2 {
+    font-size: px;
+    margin-bottom: 20px;
+}
+
+.floor {
+    margin-top: 30px;
+}
+
+.floor h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.parking-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 0fr); /* 10 columns */
+    gap: 10px;
+    justify-content: center;
+}
+
+.parking-slot {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.parking-slot:nth-child(2n) {
+    margin-right: 100px; /* Espaço extra à direita dos pares */
+}
+
+.parking-slot:nth-child(10n) {
+    margin-right: 0; /* Remove qualquer margem ou espaçamento extra */
+}
+
+.parking-slot.available {
+    background-color: #4CAF50; /* Green for available */
+}
+
+.parking-slot.reserved {
+    background-color: #FFC107; /* Yellow for reserved */
+}
+
+.parking-slot.occupied {
+    background-color: #F44336; /* Red for occupied */
+}
+
+.parking-slot:hover {
+    opacity: 0.8;
+}
+
+/* Floor Buttons */
+.floor-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.floor-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #500066;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.floor-btn:hover {
+    background-color: #7d00a0;
+}
+
+.floor-btn.active {
+    background-color: #7d00a0;
+    font-weight: bold;
+}
+
+/* Floors */
+.floor {
+    display: none;
+    margin-top: 20px;
+}
+
+.floor.active {
+    display: block;
+}

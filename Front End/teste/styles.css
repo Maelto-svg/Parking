@@ -228,3 +228,106 @@ body {
 .auth-form .btn:hover {
   background-color: #7d00a0;
 }
+
+/* Dashboard Section */
+.dashboard-section {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.dashboard-section h2 {
+  font-size: px;
+  margin-bottom: 20px;
+}
+
+.floor {
+  margin-top: 30px;
+}
+
+.floor h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.parking-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 0fr); /* 10 columns */
+  gap: 10px;
+  justify-content: center;
+}
+
+.parking-slot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 30px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.parking-slot:nth-child(2n) {
+  margin-right: 100px; /* Espaço extra à direita dos pares */
+}
+
+.parking-slot:nth-child(10n) {
+  margin-right: 0; /* Remove qualquer margem ou espaçamento extra */
+}
+
+.parking-slot.available {
+  background-color: #4CAF50; /* Green for available */
+}
+
+.parking-slot.reserved {
+  background-color: #FFC107; /* Yellow for reserved */
+}
+
+.parking-slot.occupied {
+  background-color: #F44336; /* Red for occupied */
+}
+
+.parking-slot:hover {
+  opacity: 0.8;
+}
+
+/* Floor Buttons */
+.floor-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.floor-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #500066;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.floor-btn:hover {
+  background-color: #7d00a0;
+}
+
+.floor-btn.active {
+  background-color: #7d00a0;
+  font-weight: bold;
+}
+
+/* Floors */
+.floor {
+  display: none;
+  margin-top: 20px;
+}
+
+.floor.active {
+  display: block;
+}

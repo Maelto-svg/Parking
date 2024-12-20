@@ -1,73 +1,69 @@
-// Modal Elements
-const registerIcon = document.getElementById("register-icon");
-const modal = document.getElementById("auth-modal");
-const closeModal = document.getElementById("close-modal");
-const loginBtn = document.getElementById("login-btn");
-const createAccountBtn = document.getElementById("create-account-btn");
-const loginForm = document.getElementById("login-form");
-const createAccountForm = document.getElementById("create-account-form");
+// Floor def
+const totalFloors = 4;
+const slotsPerFloor = 100;
 
-// Open Modal
-registerIcon.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal.style.display = "flex";
-});
+// Generate spots
+function generateSlots(floorId, floorLabel) {
+    const floorElement = document.querySelector(`#${floorId} .parking-grid`);
+    for (let i = 1; i <= slotsPerFloor; i++) {
+        const slot = document.createElement("div");
+        slot.className = "parking-slot available";
+        slot.setAttribute("data-status", "available");
+        slot.textContent = `${floorLabel}${i}`;
+        floorElement.appendChild(slot);
 
-// Close Modal
-closeModal.addEventListener("click", () => {
-    modal.style.display = "none";
-    resetForms();
-});
-
-// Close Modal when clicking outside
-window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.style.display = "none";
-        resetForms();
+        // Change status
+        slot.addEventListener("click", () => {
+            const status = slot.getAttribute("data-status");
+            if (status === "available") {
+                slot.setAttribute("data-status", "reserved");
+                slot.classList.remove("available");
+                slot.classList.add("reserved");
+                slot.textContent = "Reserved";
+            } else if (status === "reserved") {
+                slot.setAttribute("data-status", "occupied");
+                slot.classList.remove("reserved");
+                slot.classList.add("occupied");
+                slot.textContent = "Occupied";
+            } else if (status === "occupied") {
+                slot.setAttribute("data-status", "available");
+                slot.classList.remove("occupied");
+                slot.classList.add("available");
+                slot.textContent = `${floorLabel}${i}`;
+            }
+        });
     }
-});
-
-// Show Login Form
-loginBtn.addEventListener("click", () => {
-    loginForm.style.display = "block";
-    createAccountForm.style.display = "none";
-});
-
-// Show Create Account Form
-createAccountBtn.addEventListener("click", () => {
-    createAccountForm.style.display = "block";
-    loginForm.style.display = "none";
-});
-
-// Reset Forms
-function resetForms() {
-    loginForm.style.display = "none";
-    createAccountForm.style.display = "none";
 }
 
-// Select all spots
-const parkingSlots = document.querySelectorAll(".parking-slot");
+// Gerar vagas para cada andar
+generateSlots("floor-1", "A");
+generateSlots("floor-2", "B");
+generateSlots("floor-3", "C");
+generateSlots("floor-4", "D");
 
-// Click event for each spot
-parkingSlots.forEach((slot) => {
-    slot.addEventListener("click", () => {
-        const status = slot.getAttribute("data-status");
+// Seleção de andar com botões
+const floorButtons = document.querySelectorAll(".floor-btn");
+const floors = document.querySelectorAll(".floor");
 
-        if (status === "available") {
-            slot.setAttribute("data-status", "reserved");
-            slot.classList.remove("available");
-            slot.classList.add("reserved");
-            slot.textContent = "Reserved";
-        } else if (status === "reserved") {
-            slot.setAttribute("data-status", "occupied");
-            slot.classList.remove("reserved");
-            slot.classList.add("occupied");
-            slot.textContent = "Occupied";
-        } else if (status === "occupied") {
-            slot.setAttribute("data-status", "available");
-            slot.classList.remove("occupied");
-            slot.classList.add("available");
-            slot.textContent = slot.textContent.slice(0, 2);
-        }
+// Adiciona evento de clique aos botões
+floorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const selectedFloor = button.getAttribute("data-floor");
+
+        // Remove a classe ativa de todos os botões
+        floorButtons.forEach((btn) => btn.classList.remove("active"));
+
+        // Adiciona a classe ativa ao botão clicado
+        button.classList.add("active");
+
+        // Esconde todos os andares
+        floors.forEach((floor) => floor.classList.remove("active"));
+
+        // Mostra o andar selecionado
+        document.getElementById(selectedFloor).classList.add("active");
     });
 });
+
+// Mostrar o primeiro andar por padrão
+document.querySelector(".floor-btn").classList.add("active");
+document.getElementById("floor-1").classList.add("active");
