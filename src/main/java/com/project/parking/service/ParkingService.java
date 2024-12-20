@@ -1,19 +1,21 @@
 package com.project.parking.service;
 
-import com.project.parking.dto.lot;
-import com.project.parking.dto.lotMapper;
-import com.project.parking.dto.spot;
-import com.project.parking.dto.spotMapper;
-import com.project.parking.entity.ParkingSpot;
-import com.project.parking.entity.ParkingLot;
-import com.project.parking.repository.ParkingLotRepository;
-import com.project.parking.repository.ParkingSpotRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.project.parking.dto.lot;
+import com.project.parking.dto.lotMapper;
+import com.project.parking.dto.spot;
+import com.project.parking.dto.spotMapper;
+import com.project.parking.entity.ParkingLot;
+import com.project.parking.entity.ParkingSpot;
+import com.project.parking.repository.ParkingLotRepository;
+import com.project.parking.repository.ParkingSpotRepository;
 
 @Service
 public class ParkingService {

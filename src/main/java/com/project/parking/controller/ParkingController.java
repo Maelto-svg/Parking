@@ -28,6 +28,12 @@ public class ParkingController {
         return parkingService.getAllParkingLots();
     }
 
+    @GetMapping("/{parkingLotId}/spots")
+    public List<spot> getSpots(@PathVariable Long parkingLotId) {
+        return parkingService.getSpots(parkingLotId);
+    }
+
+
     // Endpoint pour obtenir les places disponibles d'un parking
     @GetMapping("/{parkingLotId}/available-spots")
     public List<spot> getAvailableSpots(@PathVariable Long parkingLotId) {
