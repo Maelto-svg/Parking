@@ -1,92 +1,73 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const parkingGrid = document.getElementById('layout');
-    const lotSelector = document.getElementById('lotSelector');
-    const spotsPerColumn = 6;
+// Modal Elements
+const registerIcon = document.getElementById("register-icon");
+const modal = document.getElementById("auth-modal");
+const closeModal = document.getElementById("close-modal");
+const loginBtn = document.getElementById("login-btn");
+const createAccountBtn = document.getElementById("create-account-btn");
+const loginForm = document.getElementById("login-form");
+const createAccountForm = document.getElementById("create-account-form");
 
-    // Charger les lots de parking
-    fetch("/api/parking/lots")
-        .then(response => response.json())
-        .then(lots => {
-            // Ajouter les options au menu déroulant
-            lots.forEach(lot => {
-                const option = document.createElement("option");
-                option.value = lot.id;
-                option.textContent = lot.name;
-                lotSelector.appendChild(option);
-            });
+// Open Modal
+registerIcon.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal.style.display = "flex";
+});
 
-            // Appeler la fonction pour afficher les places du premier lot après le chargement des lots
-            if (lots.length > 0) {
-                loadSpotsForLot(lots[0].id); // Charger les spots pour le premier lot
-            }
-        })
-        .catch(error => console.error("Erreur lors du chargement des lots de parking :", error));
+// Close Modal
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+  resetForms();
+});
 
-    // Fonction pour afficher les spots d’un lot spécifique
-    function loadSpotsForLot(lotId) {
-        // Vider la grille existante
-        parkingGrid.innerHTML = "";
+// Close Modal when clicking outside
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+    resetForms();
+  }
+});
 
-        fetch(`/api/parking/${lotId}/spots`)
-            .then(response => response.json())
-            .then(spots => {
-                let currentColumn;
+// Show Login Form
+loginBtn.addEventListener("click", () => {
+  loginForm.style.display = "block";
+  createAccountForm.style.display = "none";
+});
 
-                spots.forEach((spot, index) => {
-                    if (index % spotsPerColumn === 0) {
-                        currentColumn = document.createElement("div");
-                        currentColumn.classList.add("parking-column");
-                        parkingGrid.appendChild(currentColumn);
-                    }
+// Show Create Account Form
+createAccountBtn.addEventListener("click", () => {
+  createAccountForm.style.display = "block";
+  loginForm.style.display = "none";
+});
 
-                    const spotElement = document.createElement("div");
-                    const avElement = document.createElement("span");
+// Reset Forms
+function resetForms() {
+  loginForm.style.display = "none";
+  createAccountForm.style.display = "none";
+}
 
-                    spotElement.classList.add("parking-slot");
+// Select all spots
+const parkingSlots = document.querySelectorAll(".parking-slot");
 
-                    if (spot.isOccupied) {
-                        spotElement.classList.add("occupied");
-                        avElement.textContent = "Occupied";
-                    } else {
-                        spotElement.classList.add("available");
-                        avElement.textContent = "Available";
+// Click event for each spot
+parkingSlots.forEach((slot) => {
+  slot.addEventListener("click", () => {
+    const status = slot.getAttribute("data-status");
 
-                        // Rendre la place cliquable
-                        spotElement.addEventListener("click", function () {
-                            reserveSpot(spot.id, spotElement, avElement);
-                        });
-                    }
-
-                    spotElement.textContent = spot.spotNumber;
-                    currentColumn.appendChild(spotElement);
-                    spotElement.appendChild(avElement);
-                });
-            })
-            .catch(error => console.error("Erreur lors du chargement des places de parking :", error));
+    if (status === "available") {
+      slot.setAttribute("data-status", "reserved");
+      slot.classList.remove("available");
+      slot.classList.add("reserved");
+      slot.textContent = "Reserved";
+    } else if (status === "reserved") {
+      slot.setAttribute("data-status", "occupied");
+      slot.classList.remove("reserved");
+      slot.classList.add("occupied");
+      slot.textContent = "Occupied";
+    } else if (status === "occupied") {
+      slot.setAttribute("data-status", "available");
+      slot.classList.remove("occupied");
+      slot.classList.add("available");
+      slot.textContent = slot.textContent.slice(0, 2);
     }
-
-    // Gérer la sélection d’un lot
-    lotSelector.addEventListener("change", function () {
-        const selectedLotId = lotSelector.value;
-        if (selectedLotId) {
-            loadSpotsForLot(selectedLotId);
-        }
-    });
-
-    // Réserver une place
-    function reserveSpot(spotId, spotElement, avElement) {
-        fetch(`/api/parking/spots/${spotId}/reserve`, { method: "PUT" })
-            .then(response => {
-                if (response.ok) {
-                    spotElement.classList.remove("available");
-                    spotElement.classList.add("reserved");
-                    avElement.textContent = "Reserved";
-                } else {
-                    return response.text().then(errorMessage => {
-                        alert(`Erreur : ${errorMessage}`);
-                    });
-                }
-            })
-            .catch(error => console.error("Erreur lors de la réservation :", error));
-    }
+  });
 });
