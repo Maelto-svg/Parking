@@ -61,5 +61,35 @@ public class ParkingController {
 
         return ResponseEntity.ok("Spot reserved successfully");
     }
+
+    @PutMapping("/spots/{id}/occupy")
+    public ResponseEntity<?> occupySpot(@PathVariable Long id) {
+        ParkingSpot spot = parkingSpotRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Spot not found"));
+
+        if (spot.getOccupied()) {
+            return ResponseEntity.badRequest().body("Spot is already reserved or occupied.");
+        }
+
+        spot.setOccupied(true); // Mark spot as occupied
+        parkingSpotRepository.save(spot);
+
+        return ResponseEntity.ok("Spot occupied successfully");
+    }
+
+    @PutMapping("/spots/{id}/free")
+    public ResponseEntity<?> freeSpot(@PathVariable Long id) {
+        ParkingSpot spot = parkingSpotRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Spot not found"));
+
+        if (!spot.getOccupied()) {
+            return ResponseEntity.badRequest().body("Spot is already free");
+        }
+
+        spot.setOccupied(false); // Mark spot as occupied
+        parkingSpotRepository.save(spot);
+
+        return ResponseEntity.ok("Spot freed successfully");
+    }
 }
 
